@@ -1,0 +1,22 @@
+[
+{
+  "directory": "/mnt/f/ubuntu/ros/1/build",
+  "command": "/usr/bin/c++   -I/mnt/f/ubuntu/ros/1/inc  -g   -o CMakeFiles/MAIN.dir/src/compute_auxiliary.cpp.o -c /mnt/f/ubuntu/ros/1/src/compute_auxiliary.cpp",
+  "file": "/mnt/f/ubuntu/ros/1/src/compute_auxiliary.cpp"
+},
+{
+  "directory": "/mnt/f/ubuntu/ros/1/build",
+  "command": "/usr/bin/c++   -I/mnt/f/ubuntu/ros/1/inc  -g   -o CMakeFiles/MAIN.dir/src/compute_inverse_kinematic.cpp.o -c /mnt/f/ubuntu/ros/1/src/compute_inverse_kinematic.cpp",
+  "file": "/mnt/f/ubuntu/ros/1/src/compute_inverse_kinematic.cpp"
+},
+{
+  "directory": "/mnt/f/ubuntu/ros/1/build",
+  "command": "/usr/bin/c++   -I/mnt/f/ubuntu/ros/1/inc  -g   -o CMakeFiles/MAIN.dir/src/main.cpp.o -c /mnt/f/ubuntu/ros/1/src/main.cpp",
+  "file": "/mnt/f/ubuntu/ros/1/src/main.cpp"
+},
+{
+  "directory": "/mnt/f/ubuntu/ros/1/build",
+  "command": "/usr/bin/c++   -I/mnt/f/ubuntu/ros/1/inc  -g   -o CMakeFiles/MAIN.dir/src/robot_arm.cpp.o -c /mnt/f/ubuntu/ros/1/src/robot_arm.cpp",
+  "file": "/mnt/f/ubuntu/ros/1/src/robot_arm.cpp"
+}
+]

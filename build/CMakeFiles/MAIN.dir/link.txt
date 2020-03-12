@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/MAIN.dir/src/compute_auxiliary.cpp.o CMakeFiles/MAIN.dir/src/compute_inverse_kinematic.cpp.o CMakeFiles/MAIN.dir/src/main.cpp.o CMakeFiles/MAIN.dir/src/robot_arm.cpp.o  -o ../bin/MAIN 

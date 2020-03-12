@@ -1,0 +1,3 @@
+/mnt/f/ubuntu/ros/1/build/CMakeFiles/rebuild_cache.dir
+/mnt/f/ubuntu/ros/1/build/CMakeFiles/MAIN.dir
+/mnt/f/ubuntu/ros/1/build/CMakeFiles/edit_cache.dir
