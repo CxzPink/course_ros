@@ -1,4 +1,6 @@
 #include <eigen3/Eigen/Core>
+#include <eigen3/Eigen/LU>
+#include <eigen3/Eigen/Dense>
 #include <math.h>
 #include <iostream>
 #include "../inc/cxz_robot_arm.h"
@@ -54,11 +56,39 @@ int cxz::RobotArm::SolveTheTargetPoint(const double (&target_pose)[6])
     for(size_t i=0;i<6;i++)
         now_joint_angle[i]=angle_solution[0][i];
     UpdateAngle(now_joint_angle);
-    std::cout<<"--------------------------solution joint angle--------------------------"<<std::endl;
+    std::cout<<"-------------solution joint angle-------------"<<std::endl;
     PrintJointAngle();
-    std::cout<<"-----------------tail position and posture in these joint angle-----------------"<<std::endl;
+    std::cout<<"--------tail pose in these joint angle--------"<<std::endl;
     PrintTailPositionAndPosture();
     return 0;  
+}
+
+int cxz::RobotArm::SpeedControl(const double (&target_speed)[6],double (&joint_speed)[6])
+{
+    VectorXf target_velocity(6),joint_velocity(6);
+    MatrixXf jacobian_matrix(6,6);
+    Vector3f Z,P_N,P_i,temp;
+    
+    for(size_t i=0;i<6;i++)
+        target_velocity[i]=target_speed[i];
+    for(size_t i=0;i<3;i++)
+        P_N[i]=joint_position[5].coord[i];
+    for(size_t i=0;i<6;i++){
+        for(size_t k=0;k<3;k++){
+            Z[k]=joint_position[i].posture_maxtrix[k][2];
+            P_i[k]=joint_position[i].coord[k];
+        }
+        temp=Z.cross((P_N-P_i));
+        for(size_t k=0;k<3;k++){
+            jacobian_matrix(k,i)=temp[k];
+            jacobian_matrix(k+3,i)=Z[k];
+        }
+    }
+    joint_velocity=(jacobian_matrix.inverse())*target_velocity;
+    for(size_t i=0;i<6;i++)
+        joint_speed[i]=joint_velocity[i];
+
+    return 0;
 }
 
 void cxz::RobotArm::UpdateMDH(void)
@@ -82,8 +112,11 @@ void cxz::RobotArm::ComputePositionAndPosture(void)
                    0, 0, 0, 1;
         M=M*T;
 
-        for(size_t j=0; j<3; j++)
+        for(size_t j=0; j<3; j++){
             position.coord[j]=M(j,3);
+            for(size_t k=0;k<3;k++)
+                position.posture_maxtrix[j][k]=M(j,k);
+        }
         joint_position.push_back(position);
      }
     for(size_t j=0; j<3;j++)

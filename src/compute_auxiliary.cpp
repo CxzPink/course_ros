@@ -56,3 +56,22 @@ void cxz::ComputeQuaternion(const double (&posture_matrix)[3][3],double  (&quate
     quaternion_angle[1]=(posture_matrix[0][2]-posture_matrix[2][0])/(4*quaternion_angle[3]);
     quaternion_angle[2]=(posture_matrix[1][0]-posture_matrix[0][1])/(4*quaternion_angle[3]);
 }
+
+void cxz::SpeedCurve(const double t,double(&expected_speed)[6])
+{
+    expected_speed[1]=expected_speed[3]=expected_speed[4]=expected_speed[5]=0;
+    if(t>0 && t<=4){
+        expected_speed[0]=0.005*t*1.414/2;
+        expected_speed[2]=-expected_speed[0];
+    }
+    else if(t>4 && t<=7){
+        expected_speed[0]=0.01414;
+        expected_speed[2]=-expected_speed[0];
+    }
+    else if(t>7 && t<=12){
+        expected_speed[0]=0.01414-0.004*(t-7)*1.414/2;
+        expected_speed[2]=-expected_speed[0];
+    }
+    else
+        expected_speed[0]=expected_speed[2]=0;
+}

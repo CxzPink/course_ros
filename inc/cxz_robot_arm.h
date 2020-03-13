@@ -8,6 +8,7 @@ namespace cxz
 {
     struct Position{
         double coord[3];
+        double posture_maxtrix[3][3];
     };
     
     struct Posture{
@@ -27,6 +28,7 @@ namespace cxz
         RobotArm();
         int UpdateAngle(const double (&new_joint_angle)[6]);
         int SolveTheTargetPoint(const double (&target_pose)[6]);
+        int SpeedControl(const double (&target_speed)[6],double (&joint_speed)[6]);
         void PrintTailPositionAndPosture(void);
         void PrintJointAngle(void);
     private:
@@ -41,5 +43,6 @@ namespace cxz
     void ComputeQuaternion(const double (&posture_matrix)[3][3],double  (&quaternion_angle)[4]);
     void ComputeInverseKinematics(const double(&target_pose)[6], double(&angle_solve)[2][6]);
     int ChoseSolution(const double(&now_joint_angle)[6],const double(&angle_solve)[2][6], std::vector<double *> &angle_solution);
+    void SpeedCurve(const double t,double(&expected_speed)[6]);
 }
 #endif

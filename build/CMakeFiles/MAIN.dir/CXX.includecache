@@ -39,6 +39,10 @@ vector
 /mnt/f/ubuntu/ros/1/src/robot_arm.cpp
 eigen3/Eigen/Core
 -
+eigen3/Eigen/LU
+-
+eigen3/Eigen/Dense
+-
 math.h
 -
 iostream
