@@ -44,5 +44,13 @@ namespace cxz
     void ComputeInverseKinematics(const double(&target_pose)[6], double(&angle_solve)[2][6]);
     int ChoseSolution(const double(&now_joint_angle)[6],const double(&angle_solve)[2][6], std::vector<double *> &angle_solution);
     void SpeedCurve(const double t,double(&expected_speed)[6]);
+    void TrackSolution(const std::vector<double> point_value,std::vector<double *> & solution);
+    void TrackInitialTime(const std::vector<double> point_value,std::vector<double *> & solution);
+    void CubicSpline(const std::vector<double> point_value,std::vector<double *> & solution);
+    int IsTimeTooShort(const double (&s)[5]);
+    int IsTimeTooLong(const double (&s)[5]);
+    int PositiveAdjustTime(std::vector<double *> & solution);
+    int NegativeAdjustTime(std::vector<double *> & solution);
+    double ReadVelocityFromSolution(const std::vector<double *> & solution,const double & t);
 }
 #endif
